@@ -28,8 +28,12 @@ jobs:
       - name: Check if file exists
         run: ls -alh  # 列出项目目录中的所有文件
 
-      - name: Upload results
-        uses: actions/upload-artifact@v3
-        with:
-          name: ip_ports
-          path: ip_ports.txt  # 确保这个路径为项目根目录
+      - name: Commit and push changes
+        run: |
+          git config --local user.name "github-actions"
+          git config --local user.email "github-actions@github.com"
+          git add ip_ports.txt
+          git commit -m "Update ip_ports.txt with new IP:Port data" || echo "No changes to commit"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # 使用 GitHub Token 进行身份验证
