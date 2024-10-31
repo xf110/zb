@@ -34,6 +34,4 @@ jobs:
           git config --local user.email "github-actions@github.com"
           git add ip_ports.txt
           git commit -m "Update ip_ports.txt with new IP:Port data" || echo "No changes to commit"
-          git push
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # 使用 GitHub Token 进行身份验证
+          git push https://x-access-token:${{ secrets.MY_PAT }}@github.com/xf110/zb.git HEAD:main
