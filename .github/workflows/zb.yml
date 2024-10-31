@@ -1,0 +1,32 @@
+name: Extract IP Ports
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  extract:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.8'  # 可以指定 Python 版本，例如 '3.8'
+
+      - name: Install dependencies
+        run: |
+          pip install requests beautifulsoup4
+
+      - name: Run IP extractor
+        run: python zb.py
+
+      - name: Upload results
+        uses: actions/upload-artifact@v2
+        with:
+          name: ip_ports
+          path: ip_ports.txt
