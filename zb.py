@@ -34,6 +34,7 @@ def extract_ip_ports():
 
 if __name__ == '__main__':
     ip_ports = extract_ip_ports()
+    # 将结果直接写入项目根目录下的 ip_ports.txt
     with open('ip_ports.txt', 'w') as f:
         for ip_port in ip_ports:
             f.write(f"{ip_port}\n")
